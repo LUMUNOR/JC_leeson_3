@@ -36,10 +36,32 @@ public class Worker {
      * @return разница дат
      */
     public int compare(int dd, int mm, int yyyy) {
-        int empl = bDay + (bMonth << 6) + (birth << 11);
+        int start = bDay + (bMonth << 6) + (birth << 11);
         int income = dd + (mm << 6) + (yyyy << 11);
-        return empl - income;
+        return start - income;
     }
+
+    protected void increaseSalary(int amount) {
+        this.salary += amount;
+    }
+
+    public static void increaser(Worker[] emp, int age, int increment) {
+        for (Worker worker : emp) {
+            if (worker.getAge() > age) {
+                worker.increaseSalary(increment);
+            }
+        }
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Сотрудник{" +
+                        "имя='%s', отчество='%s', фамилия='%s'" +
+                        ", должность='%s', теефон='%s'" +
+                        ", зарплата=%d, возраст=%d}'",
+                name, midName, surName, position, phone, salary, getAge());
+    }
+
 
     public String getName() {
         return name;
