@@ -1,5 +1,8 @@
 package worker;
 
+//1. В класс покупателя добавить перечисление с гендерами, добавить в сотрудника свойство «пол» со значением созданного перечисления.
+// Добавить геттеры,сеттеры.
+
 public class Worker {
     private static final int CURRENT_YEAR = 2024;
     String name;
@@ -11,8 +14,9 @@ public class Worker {
     int birth;
     int bMonth;
     int bDay;
+    Genders gender;
 
-    public Worker(String name, String midName, String surName, String phone, String position, int salary, int birth, int bMonth, int bDay) {
+    public Worker(String name, String midName, String surName, String phone, String position, int salary, int birth, int bMonth, int bDay, Genders gender) {
         this.name = name;
         this.midName = midName;
         this.surName = surName;
@@ -22,10 +26,9 @@ public class Worker {
         this.birth = birth;
         this.bMonth = bMonth;
         this.bDay = bDay;
+        this.gender = gender;
     }
 
-    //1. Написать прототип компаратора - метод внутри класса сотрудника, сравнивающий две даты,
-    //   представленные в виде трёх чисел гггг-мм-дд, без использования условного оператора.
 
     /**
      * Сравнение дат происходит путем представления дады в виде двоичного числа:
@@ -58,8 +61,8 @@ public class Worker {
         return String.format("Сотрудник{" +
                         "имя='%s', отчество='%s', фамилия='%s'" +
                         ", должность='%s', теефон='%s'" +
-                        ", зарплата=%d, возраст=%d}'",
-                name, midName, surName, position, phone, salary, getAge());
+                        ", зарплата=%d, возраст=%d, пол=%s}'",
+                name, midName, surName, position, phone, salary, getAge(),getStringGender());
     }
 
 
@@ -102,4 +105,13 @@ public class Worker {
     public int getAge() {
         return CURRENT_YEAR - birth;
     }
+
+    public Genders getGender(){return gender;}
+
+    public String getStringGender(){
+        if (this.gender == Genders.MALE) return "Муж.";
+        else return "Жен.";
+    }
+
+    public void setGender(Genders gender){this.gender = gender;}
 }
